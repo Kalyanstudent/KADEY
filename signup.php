@@ -99,7 +99,7 @@ if (isset($_POST['Sign_Up'])) { // Assuming you have a button named Register
     mysqli_stmt_bind_param($stmt, 'ss', $username, $hashedPassword);
     
     if (mysqli_stmt_execute($stmt)) {
-        echo "Registration successful";
+        echo "Sign Up successful";
     } else {
         echo "Error: " . mysqli_error($conn);
     }
