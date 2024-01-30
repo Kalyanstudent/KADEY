@@ -9,7 +9,7 @@ $conn =mysqli_connect($servername,$username,$password,$dbname);
 //$conn=new mysqli("localhost","root","","kalyan");
 
 if($conn){
-    echo "connection ok";
+    //echo "connection ok";
 }else{
     echo "connection failed".mysqli_connect_error();
 }
