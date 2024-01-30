@@ -76,9 +76,34 @@
             <label for="newPassword">Password:</label>
             <input type="password" id="newPassword" name="newPassword" required>
 
-            <input type="submit" value="Sign Up">
+            <input type="submit" value="Sign Up" name="Sign_Up">
         </form>
     </div>
 
 </body>
 </html>
+<?php
+include("connection_db.php");
+
+if (isset($_POST['Sign_Up'])) { // Assuming you have a button named Register
+
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    // Hash the password before storing it
+    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+    // Use prepared statements to prevent SQL injection
+    $query = "INSERT INTO `users` (username, password) VALUES (?, ?)";
+    $stmt = mysqli_prepare($conn, $query);
+    mysqli_stmt_bind_param($stmt, 'ss', $username, $hashedPassword);
+    
+    if (mysqli_stmt_execute($stmt)) {
+        echo "Registration successful";
+    } else {
+        echo "Error: " . mysqli_error($conn);
+    }
+
+    mysqli_stmt_close($stmt);
+}
+?>
