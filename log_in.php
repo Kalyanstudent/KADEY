@@ -69,7 +69,7 @@
 
     <div class="login-container">
         <h2>Login</h2>
-        <form action="#" method="post">
+        <form action="#" method="post" autocomplete="off">
             <label for="username">Username:</label>
             <input type="text" id="username" name="username" required>
 
@@ -94,5 +94,12 @@ if(isset($_POST['Login'])){
 
     $username = $_POST['username'];
     $password = $_POST['password'];
+
+    $query="SELECT * FROM `users` WHERE username='$username' && password='$password' ";
+
+    $data=mysqli_query($conn,$query);
+
+    $total = mysqli_num_rows($data);
+    echo $total ;
 }
 ?>
