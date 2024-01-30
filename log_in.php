@@ -100,6 +100,7 @@ if(isset($_POST['Login'])){
     $data=mysqli_query($conn,$query);
 
     $total = mysqli_num_rows($data);
+    
     echo $total ;
 }
 ?>
