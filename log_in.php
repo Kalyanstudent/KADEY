@@ -76,7 +76,7 @@
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" required>
 
-            <input type="submit" value="Login">
+            <input type="submit" value="Login" name="Login">
             <p><a href="forgot_password.php">Forgot Password</a></p>
             <p><a href="signup.php">New Member? Sign Up</a></p>
         </form>
@@ -85,3 +85,14 @@
 </body>
 
 </html>
+
+<?php 
+
+include("connection_db.php");
+
+if(isset($_POST['Login'])){
+
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+}
+?>
