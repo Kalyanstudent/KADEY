@@ -87,7 +87,7 @@
 </html>
 
 <?php 
-
+/*
 include("connection_db.php");
 
 if(isset($_POST['Login'])){
@@ -103,4 +103,41 @@ if(isset($_POST['Login'])){
     
     echo $total ;
 }
+*/
+
+include("connection_db.php");
+
+session_start(); // Start the session
+
+if (isset($_POST['Login'])) {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    // Use prepared statements to prevent SQL injection
+    $query = "SELECT * FROM `users` WHERE username = ? LIMIT 1";
+    $stmt = mysqli_prepare($conn, $query);
+    mysqli_stmt_bind_param($stmt, 's', $username);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+
+    if ($row = mysqli_fetch_assoc($result)) {
+        // Use password_verify() to check hashed passwords
+        if (password_verify($password, $row['password'])) {
+            // Password is correct, set up the session
+            $_SESSION['user_id'] = $row['user_id'];
+            $_SESSION['username'] = $row['username'];
+
+            // Redirect the user to a dashboard or home page
+            header("Location: dashboard.php");
+            exit();
+        } else {
+            echo "Incorrect password";
+        }
+    } else {
+        echo "User not found";
+    }
+
+    mysqli_stmt_close($stmt);
+}
+
 ?>
