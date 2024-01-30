@@ -1,4 +1,3 @@
-<?php include("connection_db.php");?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -85,18 +84,14 @@
 <?php
 include("connection_db.php");
 
-if (isset($_POST['Sign_Up'])) { // Assuming you have a button named Register
+if (isset($_POST['Sign_Up'])) {
 
-    $username = $_POST['username'];
-    $password = $_POST['password'];
+    $username = $_POST['newUsername'];
+    $password = $_POST['newPassword'];
 
-    // Hash the password before storing it
-    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-
-    // Use prepared statements to prevent SQL injection
     $query = "INSERT INTO `users` (username, password) VALUES (?, ?)";
     $stmt = mysqli_prepare($conn, $query);
-    mysqli_stmt_bind_param($stmt, 'ss', $username, $hashedPassword);
+    mysqli_stmt_bind_param($stmt, 'ss', $username, $password);
     
     if (mysqli_stmt_execute($stmt)) {
         echo "Sign Up successful";
