@@ -1,139 +1,51 @@
-<?php include("connection_db.php"); ?>
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            text-align: center;
-            margin: 0;
-            padding: 0;
-        }
-
-        .login-container {
-            width: 300px;
-            margin: 100px auto;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        input[type="text"],
-        input[type="password"] {
-            width: 100%;
-            padding: 10px;
-            margin: 8px 0;
-            display: inline-block;
-            border: 1px solid #ccc;
-            box-sizing: border-box;
-        }
-
-        input[type="submit"] {
-            background-color: #4caf50;
-            color: #fff;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 3px;
-            cursor: pointer;
-        }
-
-        input[type="submit"]:hover {
-            background-color: #45a049;
-        }
-
-        p {
-            margin-top: 15px;
-            color: #333;
-        }
-
-        a {
-            text-decoration: none;
-            color: #007bff;
-            margin: 0 10px;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-    </style>
-</head>
-
-<body>
-
-    <div class="login-container">
-        <h2>Login</h2>
-        <form action="#" method="post" autocomplete="off">
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required>
-
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
-
-            <input type="submit" value="Login" name="Login">
-            <p><a href="forgot_password.php">Forgot Password</a></p>
-            <p><a href="signup.php">New Member? Sign Up</a></p>
-        </form>
-    </div>
-
-</body>
-
-</html>
-
 <?php
-/*
-include("connection_db.php");
+include('connection_db.php');
 
-if(isset($_POST['Login'])){
+session_start();
 
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    $query="SELECT * FROM `users` WHERE username='$username' && password='$password' ";
-
-    $data=mysqli_query($conn,$query);
-
-    $total = mysqli_num_rows($data);
-    
-    echo $total ;
-}
-*/
-
-include("connection_db.php");
-
-
-if (isset($_POST['Login'])) {
-
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-
-    // Retrieve user input
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-
-    // Query to check if the user exists in the database
-    $sql = "SELECT * FROM users WHERE username = '$username' AND password = '$password'";
+    $sql = "SELECT * FROM users WHERE username = '$username'";
     $result = $conn->query($sql);
 
     if ($result->num_rows == 1) {
-        // Start a session and store user information
-        session_start();
-        $_SESSION['username'] = $username;
-
-        // Redirect to a dashboard or home page
-        header("Location:session_create.php");
+        $row = $result->fetch_assoc();
+        if (password_verify($password, $row['password'])) {
+            $_SESSION['username'] = $username;
+            header("Location: home.php");
+            exit();
+        } else {
+            $error = "Incorrect password";
+        }
     } else {
-        // Redirect back to the login page with an error message
-        header("Location: log_in.php?error=1");
+        $error = "User not found";
     }
-
-    $conn->close();
 }
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <h2>Login</h2>
+    <form action="" method="post">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required><br>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br>
+
+        <input type="submit" value="Login">
+    </form>
+    <?php if(isset($error)) { echo $error; } ?>
+
+    <p>Forgot your password? <a href="forgetpassword.php">Reset it</a></p>
+    <p>Don't have an account? <a href="signup.php">Sign up</a></p>
+</body>
+</html>
