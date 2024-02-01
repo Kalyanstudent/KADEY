@@ -1,4 +1,4 @@
-<?php include("connection_db.php");?>
+<?php include("connection_db.php"); ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -86,7 +86,7 @@
 
 </html>
 
-<?php 
+<?php
 /*
 include("connection_db.php");
 
@@ -107,37 +107,33 @@ if(isset($_POST['Login'])){
 
 include("connection_db.php");
 
-session_start(); // Start the session
 
 if (isset($_POST['Login'])) {
+
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    // Retrieve user input
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    // Use prepared statements to prevent SQL injection
-    $query = "SELECT * FROM `users` WHERE username = ? LIMIT 1";
-    $stmt = mysqli_prepare($conn, $query);
-    mysqli_stmt_bind_param($stmt, 's', $username);
-    mysqli_stmt_execute($stmt);
-    $result = mysqli_stmt_get_result($stmt);
+    // Query to check if the user exists in the database
+    $sql = "SELECT * FROM users WHERE username = '$username' AND password = '$password'";
+    $result = $conn->query($sql);
 
-    if ($row = mysqli_fetch_assoc($result)) {
-        // Use password_verify() to check hashed passwords
-        if (password_verify($password, $row['password'])) {
-            // Password is correct, set up the session
-            $_SESSION['user_id'] = $row['user_id'];
-            $_SESSION['username'] = $row['username'];
+    if ($result->num_rows == 1) {
+        // Start a session and store user information
+        session_start();
+        $_SESSION['username'] = $username;
 
-            // Redirect the user to a dashboard or home page
-            header("Location: dashboard.php");
-            exit();
-        } else {
-            echo "Incorrect password";
-        }
+        // Redirect to a dashboard or home page
+        header("Location:session_create.php");
     } else {
-        echo "User not found";
+        // Redirect back to the login page with an error message
+        header("Location: log_in.php?error=1");
     }
 
-    mysqli_stmt_close($stmt);
+    $conn->close();
 }
-
 ?>
