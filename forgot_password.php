@@ -1,4 +1,6 @@
-<?php include("connection_db.php");?>
+<?php include("connection_db.php");
+session_start();
+?>
 
 <!DOCTYPE html>
 <html lang="en">
