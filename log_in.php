@@ -72,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
 
         input[type="submit"] {
-            background-color: #4caf50;
+            background-color: #007bff;
             color: #fff;
             cursor: pointer;
         }
