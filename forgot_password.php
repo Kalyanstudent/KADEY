@@ -18,13 +18,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Forget Password</title>
     <style>
         body {
-            display: flex;
             align-items: center;
             justify-content: center;
             height: 100vh;
@@ -47,6 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
 
         form {
+            margin: 0 auto;
             margin-top: 20px;
         }
 
@@ -84,6 +85,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     </style>
 </head>
+
 <body>
     <h2>Forget Password</h2>
     <form action="" method="post">
@@ -91,9 +93,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <input type="email" id="email" name="email" required><br>
 
         <input type="submit" value="Reset Password">
-    </form>
-    <?php if(isset($error)) { echo $error; } ?>
 
-    <p>Remember your password? <a href="log_in.php">Login</a></p>
+        <?php if (isset($error)) {
+            echo $error;
+        } ?>
+
+        <p>Remember your password? <a href="log_in.php">Login</a></p>
+    </form>
+
 </body>
+
 </html>
