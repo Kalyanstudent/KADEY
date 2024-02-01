@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </form>
     <?php if(isset($error)) { echo $error; } ?>
 
-    <p>Forgot your password? <a href="forgetpassword.php">Reset it</a></p>
+    <p>Forgot your password? <a href="forget_password.php">Reset it</a></p>
     <p>Don't have an account? <a href="signup.php">Sign up</a></p>
 </body>
 </html>
