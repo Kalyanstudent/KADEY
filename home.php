@@ -1,60 +1,35 @@
+<?php
+include('connection_db.php');
+
+session_start();
+
+if (!isset($_SESSION['username'])) {
+    header("Location: login.php");
+    exit();
+}
+
+if (isset($_POST['logout'])) {
+    session_unset();
+    session_destroy();
+    header("Location: login.php");
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Website Name</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-
-        header {
-            background-color: #333;
-            color: #fff;
-            padding: 1em;
-            text-align: center;
-        }
-
-        section {
-            padding: 2em;
-            text-align: center;
-        }
-
-        footer {
-            background-color: #333;
-            color: #fff;
-            padding: 1em;
-            text-align: center;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
-    </style>
+    <title>Homepage</title>
 </head>
 <body>
+    <h2>Welcome, <?php echo $_SESSION['username']; ?>!</h2>
 
-    <header>
-        <h1>Your Website Name</h1>
-        <p>Welcome to our website!</p>
-    </header>
+    <!-- Add your homepage content here -->
 
-    <section>
-        <h2>About Us</h2>
-        <p>This is a brief description of your website and what visitors can expect.</p>
-    </section>
-
-    <section>
-        <h2>Featured Content</h2>
-        <p>Highlight some of your best content or products here.</p>
-    </section>
-
-    <footer>
-        <p>&copy; 2024 Your Website Name. All rights reserved.</p>
-    </footer>
-
+    <form method="post">
+        <input type="submit" name="logout" value="Logout">
+    </form>
 </body>
 </html>
