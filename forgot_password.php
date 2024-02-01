@@ -25,48 +25,46 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <title>Forget Password</title>
     <style>
         body {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
             margin: 0;
-            font-family: 'Arial', sans-serif;
-            background-color: #f2f2f2;
-        }
+            padding: 0;
 
-        .container {
-            border: 1px solid #ccc;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 300px;
-            text-align: center;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
 
         h2 {
+            text-align: center;
             color: #333;
         }
 
         form {
-            margin-top: 20px;
+            max-width: 300px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
         label {
             display: block;
             margin-bottom: 8px;
-            color: #555;
+            color: #333;
         }
 
         input {
             width: 100%;
             padding: 8px;
-            margin-bottom: 12px;
+            margin-bottom: 16px;
             box-sizing: border-box;
         }
 
         input[type="submit"] {
             background-color: #4caf50;
-            color: white;
+            color: #fff;
             cursor: pointer;
         }
 
@@ -75,8 +73,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
 
         p {
+            text-align: center;
             margin-top: 20px;
-            color: #555;
+            color: #333;
         }
 
         a {
