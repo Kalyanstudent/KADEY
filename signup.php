@@ -84,6 +84,8 @@
 <?php
 include("connection_db.php");
 
+session_start();
+
 if (isset($_POST['Sign_Up'])) {
 
     $username = $_POST['newUsername'];
