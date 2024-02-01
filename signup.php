@@ -40,6 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
 
         form {
+            margin: 0 auto;
             max-width: 300px;
             width: 100%;
             background-color: #fff;
