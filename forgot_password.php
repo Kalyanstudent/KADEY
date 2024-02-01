@@ -33,6 +33,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </form>
     <?php if(isset($error)) { echo $error; } ?>
 
-    <p>Remember your password? <a href="login.php">Login</a></p>
+    <p>Remember your password? <a href="log_in.php">Login</a></p>
 </body>
 </html>
