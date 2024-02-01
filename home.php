@@ -4,14 +4,14 @@ include('connection_db.php');
 session_start();
 
 if (!isset($_SESSION['username'])) {
-    header("Location: login.php");
+    header("Location: log_in.php");
     exit();
 }
 
 if (isset($_POST['logout'])) {
     session_unset();
     session_destroy();
-    header("Location: login.php");
+    header("Location: log_in.php");
     exit();
 }
 ?>
