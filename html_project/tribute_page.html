@@ -5,28 +5,69 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Page</title>
     <style>
-        /* Centering the div element */
         body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
             margin: 0;
             padding: 0;
-            height: 100vh; /* Set the height of the body to the full viewport height */
-            display: flex;
-            justify-content: center; /* Center horizontally */
-            align-items: center; /* Center vertically */
-            background-color: #f0f0f0; /* Set background color */
         }
-
-        div.container {
-            text-align: center; /* Center the text within the div */
-            background-color: #acceed; /* Set background color for the div */
-            padding: 20px; /* Add some padding */
-            border-radius: 10px; /* Add rounded corners */
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a shadow */
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-
-        div.timeline {
-            margin-top: 20px; /* Add margin to separate from the previous content */
-            text-align: left; /* Align the timeline content to the left */
+        h1, h2, h3 {
+            color: #333;
+            text-align: center;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 20px;
+        }
+        li strong {
+            color: #007bff;
+        }
+        .timeline {
+            margin-top: 20px;
+        }
+        .timeline ul:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 2px;
+            background: #007bff;
+            margin-left: -1px;
+        }
+        .timeline ul li {
+            position: relative;
+            padding-left: 40px;
+        }
+        .timeline ul li:before {
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            background: #007bff;
+            border-radius: 50%;
+            left: 50%;
+            top: 5px;
+            transform: translateX(-50%);
         }
     </style>
 </head>
