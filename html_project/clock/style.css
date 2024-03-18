@@ -9,82 +9,127 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: #333;
-}
-
-.container {
-    position: relative;
+    background-color: #f0f0f0;
 }
 
 .clock {
-    width: 300px;
-    height: 300px;
-    border-radius: 50%;
-    background-color: #fff;
+    width: 200px;
+    height: 200px;
     border: 2px solid #333;
+    border-radius: 50%;
     position: relative;
 }
 
-.hour,
-.minute,
-.second {
+.hour-hand,
+.minute-hand,
+.second-hand {
     position: absolute;
-    transform-origin: center;
     background-color: black;
+    transform-origin: 50% 100%;
 }
 
 .hour-hand {
-    height: 30%;
-    width: 4px;
-    top: 35%;
-    left: 48%;
-    transform: rotate(30deg);
+    width: 6px;
+    height: 50px;
 }
 
 .minute-hand {
-    height: 40%;
-    width: 3px;
-    top: 30%;
-    left: 49%;
-    transform: rotate(180deg);
+    width: 4px;
+    height: 70px;
 }
 
 .second-hand {
-    height: 45%;
     width: 2px;
-    top: 27.5%;
-    left: 49.5%;
-    transform: rotate(270deg);
-    background-color: red;
+    height: 80px;
+    background-color: red; /* Change color for second hand */
 }
 
 .center-circle {
-    width: 10px;
-    height: 10px;
+    width: 12px;
+    height: 12px;
     border-radius: 50%;
-    background-color: #333;
+    background-color: black;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f0f0;
+}
+
+.clock {
+    width: 200px;
+    height: 200px;
+    border: 2px solid #333;
+    border-radius: 50%;
+    position: relative;
+}
+
+.hour-hand,
+.minute-hand,
+.second-hand {
+    position: absolute;
+    background-color: black;
+    transform-origin: 50% 100%;
+}
+
+.hour-hand {
+    width: 6px;
+    height: 50px;
+}
+
+.minute-hand {
+    width: 4px;
+    height: 70px;
+}
+
+.second-hand {
+    width: 2px;
+    height: 80px;
+    background-color: red; /* Change color for second hand */
+}
+
+.center-circle {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: black;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
 
-.number {
+.numbers {
     position: absolute;
-    font-size: 18px;
-    font-weight: bold;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.number:nth-child(odd) {
+.numbers span {
+    position: absolute;
+    transform-origin: 50% 100%;
+    font-size: 14px;
+}
+
+.numbers span:nth-child(odd) {
     color: black;
 }
 
-.number:nth-child(even) {
+.numbers span:nth-child(even) {
     color: white;
-}
-
-.number {
-    top: 8%;
-    left: 48%;
-    transform: translateX(-50%);
 }
